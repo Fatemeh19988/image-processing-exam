@@ -1,6 +1,9 @@
 import cv2
 import os
 
+# Test print statement
+print("This is a test print statement to check if prints are working.")
+
 # Get the desktop path
 desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 
@@ -42,3 +45,15 @@ if cv2.imwrite(resized_image_path, resized_image):
     print(f'Resized image saved successfully at: {resized_image_path}')
 else:
     print('Failed to save resized image.')
+
+# Apply Gaussian blur to the image
+blurred_image = cv2.GaussianBlur(image, (15, 15), 0)
+
+# Construct the full path to save the blurred image
+blurred_image_path = os.path.join(desktop_path, 'blurred_sample.jpg')
+
+# Save the blurred image
+if cv2.imwrite(blurred_image_path, blurred_image):
+    print(f'Blurred image saved successfully at: {blurred_image_path}')
+else:
+    print('Failed to save blurred image.')
