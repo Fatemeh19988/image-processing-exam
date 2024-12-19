@@ -1,8 +1,6 @@
 import cv2
 import os
-
-# Test print statement
-print("This is a test print statement to check if prints are working.")
+import matplotlib.pyplot as plt
 
 # Get the desktop path
 desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
@@ -57,3 +55,28 @@ if cv2.imwrite(blurred_image_path, blurred_image):
     print(f'Blurred image saved successfully at: {blurred_image_path}')
 else:
     print('Failed to save blurred image.')
+
+# Display the processed images using Matplotlib
+fig, axs = plt.subplots(2, 2, figsize=(10, 10))
+
+# Original image
+axs[0, 0].imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+axs[0, 0].set_title('Original Image')
+axs[0, 0].axis('off')
+
+# Grayscale image
+axs[0, 1].imshow(gray_image, cmap='gray')
+axs[0, 1].set_title('Grayscale Image')
+axs[0, 1].axis('off')
+
+# Resized image
+axs[1, 0].imshow(cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB))
+axs[1, 0].set_title('Resized Image')
+axs[1, 0].axis('off')
+
+# Blurred image
+axs[1, 1].imshow(cv2.cvtColor(blurred_image, cv2.COLOR_BGR2RGB))
+axs[1, 1].set_title('Blurred Image')
+axs[1, 1].axis('off')
+
+plt.show()
